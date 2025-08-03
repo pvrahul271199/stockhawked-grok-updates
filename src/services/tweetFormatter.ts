@@ -1,5 +1,5 @@
 import moment from 'moment-timezone';
-import { MarketData, IndexData, StockData } from '../types/index.js';
+import { MarketData } from '../types/index.js';
 import logger from '../utils/logger.js';
 
 export class TweetFormatter {

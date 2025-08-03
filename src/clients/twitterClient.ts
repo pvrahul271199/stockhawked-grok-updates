@@ -1,6 +1,5 @@
 import { TwitterApi } from 'twitter-api-v2';
 import logger from '../utils/logger.js';
-import { log } from 'console';
 
 export class TwitterClient {
   private client: TwitterApi;
@@ -19,8 +18,6 @@ export class TwitterClient {
     
     for (let attempt = 1; attempt <= maxRetries; attempt++) {
       try {
-        logger.info("content check",content);
-        console.log("content check 2",content);
         logger.info(`Posting tweet (attempt ${attempt}/${maxRetries})`, { 
           contentLength: content.length
         });

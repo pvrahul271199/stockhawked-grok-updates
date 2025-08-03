@@ -51,7 +51,7 @@ async function initializeApp(): Promise<void> {
 }
 
 // Health check endpoint
-app.get('/health', (req, res) => {
+app.get('/health', (_, res) => {
   const uptime = Date.now() - startTime.getTime();
   const schedulerStatus = scheduler?.getStatus() || { isRunning: false };
   
@@ -65,7 +65,7 @@ app.get('/health', (req, res) => {
 });
 
 // Manual trigger endpoint (for testing)
-app.post('/trigger', async (req, res) => {
+app.post('/trigger', async (_, res) => {
   try {
     logger.info('Manual trigger requested via API');
     await scheduler.triggerManually();
