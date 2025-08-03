@@ -21,7 +21,7 @@ export class Scheduler {
   start(): void {
     // Run every 20 minutes during market hours (9:15 AM - 3:30 PM IST, Mon-Fri)
     // const cronExpression = '*/20 9-15 * * 1-5';
-    const cronExpression = "*/20 9-15 * * 1-5";
+    const cronExpression = '*/20 9-15 * * 1-5';
     
     logger.info('Starting scheduler', { cronExpression });
     
@@ -41,7 +41,7 @@ export class Scheduler {
       logger.info('Executing scheduled market snapshot task');
       
       // Check if it's actually market hours
-      if (false) { // !this.isMarketHours(
+      if (!this.isMarketHours) { // 
         logger.info('Outside market hours, skipping task');
         return;
       }
@@ -49,15 +49,13 @@ export class Scheduler {
       // Fetch market data
       const marketData = await this.marketFetcher.fetchMarketSnapshot();
       
-      // Check if market is open according to API
-      if (false) { //!marketData.isMarketOpen
+      if (!marketData.isMarketOpen) { 
         logger.info('Market is closed according to API, skipping tweet');
         return;
       }
 
       // Format tweet
       const tweetContent = this.tweetFormatter.formatMarketSnapshot(marketData);
-      console.log("tweetContent check", tweetContent);
       // Post tweet
       await this.twitterClient.postTweet(tweetContent);
       
