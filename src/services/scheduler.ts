@@ -21,7 +21,7 @@ export class Scheduler {
   start(): void {
     // Run every 20 minutes during market hours (9:15 AM - 3:30 PM IST, Mon-Fri)
     // const cronExpression = '*/20 9-15 * * 1-5';
-    const cronExpression = "* * * * *";
+    const cronExpression = "*/20 9-15 * * 1-5";
     
     logger.info('Starting scheduler', { cronExpression });
     
